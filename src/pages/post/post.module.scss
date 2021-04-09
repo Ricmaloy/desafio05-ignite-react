@@ -1,1 +1,52 @@
-// TODO
+.banner {
+    width: 100%;    
+    margin-bottom: 80px;
+}
+
+.header {
+    margin-bottom: 64px;
+}
+
+.headerTitle {
+    font-size: 48px;
+    font-weight: 600;
+    color: var(--heading);
+    letter-spacing: -.5px;
+    margin-bottom: 24px;
+}
+
+.headerInfos {
+    color: var(--info);
+
+    span {
+        margin-right: 24px;
+
+        svg {
+            margin-right: 8px;
+        }
+    }
+}
+
+.content {
+    h1 {
+        font-size: 36px;
+        font-weight: 600;
+        line-height: 1.4;
+        color: var(--heading);
+        margin-bottom: 30px;
+
+    }
+
+    p {
+        color: var(--info);
+        line-height: 1.5rem;
+        text-align: justify;
+        margin: 15px 0;
+      }
+
+    ul {
+        color: var(--info);
+        line-height: 1.5rem;
+        text-align: justify;
+    }
+}

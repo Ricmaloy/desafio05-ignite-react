@@ -1,1 +1,42 @@
 // TODO
+.container {
+    margin-bottom: 48px;
+}
+
+.title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    letter-spacing: -.5px;
+    color: var(--heading);
+}
+
+.subtitle {
+    font-size: 18px;
+    color: var(--body);
+    margin-bottom: 24px;
+}
+
+.infos {
+    color: var(--info);
+
+    & span {
+        &:first-child {
+            margin-right: 26px;
+        }
+
+        svg {
+            margin-right: 8px;
+        }
+    } 
+}
+
+.button {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--highlight);
+    
+    background: none;
+    border: none;
+    outline: none;
+}
