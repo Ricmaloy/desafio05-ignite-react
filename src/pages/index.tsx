@@ -30,12 +30,16 @@ interface PostPagination {
 
 interface HomeProps {
   postsPagination: PostPagination;
+  preview: boolean;
 }
 
-export default function Home({ postsPagination }: HomeProps): JSX.Element {
-  // console.log(postsPagination);
+export default function Home({
+  postsPagination,
+  preview,
+}: HomeProps): JSX.Element {
   const { next_page, results } = postsPagination;
   const [nextPage, setNextPage] = useState(next_page);
+
   const [posts, setPosts] = useState(
     results.map(post => {
       return {
@@ -59,7 +63,6 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const handleLoadMorePosts = async function () {
     try {
-      // faz a requisição ao prismic para novos posts
       const loadPostsFetchResult = await fetch(nextPage).then(res =>
         res.json()
       );
@@ -95,10 +98,10 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
     }
   };
 
-  // TODO
   return (
     <>
       <Header />
+
       <div className={commonStyles.containerSizing}>
         {posts.map(post => (
           <div key={post.uid} className={styles.container}>
@@ -131,19 +134,31 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
         ) : (
           ''
         )}
+        {preview && (
+          <aside className={commonStyles.exit_bton}>
+            <Link href="/api/exit-preview">
+              <a>Sair do modo Preview</a>
+            </Link>
+          </aside>
+        )}
       </div>
     </>
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps<HomeProps> = async ({
+  preview = false,
+  previewData,
+}) => {
   const prismic = getPrismicClient();
 
   const postsResponse = await prismic.query(
     [Prismic.predicates.at('document.type', 'post')],
     {
+      orderings: '[documenot.first_publication_date]',
       fetch: ['post.title', 'post.subtitle', 'post.author'],
       pageSize: 2,
+      ref: previewData?.ref ?? null,
     }
   );
 
@@ -167,6 +182,7 @@ export const getStaticProps: GetStaticProps = async () => {
         next_page: nextPage,
         results: posts,
       },
+      preview,
     },
     revalidate: 10,
   };

@@ -50,3 +50,57 @@
         text-align: justify;
     }
 }
+
+.footer {
+    width: 700px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.divider {
+    height: 1px;
+    margin: 45px auto;
+
+    background: var(--body);
+}
+
+.morePosts {
+    width: 100%;
+    margin-bottom: 30px;
+
+    display: flex;
+    justify-content: space-between;
+
+    a p {
+        width: 200px;
+        font-size: 18px;
+        letter-spacing: -.5px;
+        color: var(--heading);
+        margin-bottom: 8px;
+
+        & + span {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--highlight);
+        }
+    }
+
+    &_previous {
+        text-align: left;
+        margin-right: auto;
+    }
+
+    &_next {
+        text-align: right;
+        margin-left: auto;
+
+    }
+}
+
+.lastChanged {
+    color: var(--info);
+    font-size: 14px;
+    font-weight: 400;
+
+    margin-top: 16px;
+}
